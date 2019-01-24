@@ -1,5 +1,5 @@
 function [p,tab,chi2,labels] = mediantest(varargin)
-
+%
 % [p,tab,chi2,labels] = mediantest(varargin) performes Mood's mediantest: Mood's Median Test compares the medians of
 % two or more groups. The test counts how many observations in each group
 % are greater than the global median for all groups together and
