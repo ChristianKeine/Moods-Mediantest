@@ -5,34 +5,48 @@ function [p,tab,chi2,labels] = mediantest(varargin)
 % data/group
 inputClass = class(varargin{1});
 
+inputData = varargin;
+
 switch inputClass
     case 'table'
-        t = varargin{1};
+        t = inputData{1};
         data = t.data;
         groups = t.groups;
-    case 'double'
-        if numel(varargin)>2 % assume data entered as several input arguments
-          % SORT DATA
-          sortFun = @(x) reshape(x,numel(x),1)
+    case 'double'  
+        if numel(inputData)<2 % NOT ENOUGH GROUPS
+        warning('Please specify at least two groups.'), return
+        elseif numel(inputData)>2 % assume data entered as several input arguments
+            % SORT DATA
+            [data, groups] = sortData(inputData);
             
-          nGroups = numel(varargin);
-          g = cell(nGroups,1);
-          data = cell(nGroups,1);
-        end
-        
-        
-        
+            
+        elseif numel(inputData) == 2 % COULD BE TWO GROUPS OR DATA/GROUP
+            isCat = cellfun(@iscategorical, inputData);
+            if any(isCat) % IF ONE VECTOR IS CATEGORICAL ONE INPUT ARE DATA SECOND IS GROUP
+                data = inputData{~isCat};
+                groups = inputData{isCat};
+            else
+                [data, groups] = sortData(inputData);
+            end
+        end     
 end
 
+[tab,chi2,p,labels] = crosstab(data>median(data),groups);
 
-nGroups = numel(varargin);
+end
 
-
+function [data,groups] = sortData(inputData)
+nGroups = numel(inputData);
 g = cell(nGroups,1);
-data = cell(nGroups,1);
+d = cell(nGroups,1);
+
 for iG=1:nGroups
-   g{iG} = repmat(iG,size(varargin{iG}(:)));
-   data{iG} = varargin{iG}(:);
+    g{iG} = repmat(iG,size(inputData{iG}(:)));
+    d{iG} = inputData{iG}(:);
 end
 
-[tab,chi2,p,labels] = crosstab(cell2mat(data)>median(cell2mat(data)),cell2mat(g));
+groups = cell2mat(g);
+data = cell2mat(d);
+
+end
+
