@@ -16,7 +16,11 @@ Information on the test from [1]:
   - Alternative hypothesis (two-sided): The medians of values for each group are not equal.
 
 **Interpretation:**
+<<<<<<< HEAD
 - Significant results can be reported as “There was a significant difference in the median values among groups.”
+=======
+- Significant results can be reported as â€œThere was a significant difference in the median values among groups.â€
+>>>>>>> ac28426746b19b121b7059ec21857a74140bc6bf
 
 [1] Mangiafico, S.S. 2016. Summary and Analysis of Extension Program Evaluation in R, version 1.15.0. rcompanion.org/handbook/. (Pdf version: rcompanion.org/documents/RHandbookProgramEvaluation.pdf.)
 
