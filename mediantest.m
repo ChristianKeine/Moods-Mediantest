@@ -4,7 +4,7 @@ function [p,tab,chi2,labels] = mediantest(varargin)
 % two or more groups. The test counts how many observations in each group
 % are greater than the global median for all groups together and
 % calculuates Chi-square statistics on those obervations.
-% Less powerful than Kruskal-Wallis test, but require fewer assumptions.
+% Less powerful than Kruskal-Wallis test, but requires fewer assumptions.
 %
 %
 % Information from [1]:
