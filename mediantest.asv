@@ -1,17 +1,11 @@
 function [p,tab,chi2,labels] = mediantest(varargin)
 
-% [p,tab,chi2,labels] = mediantest(varargin) performes Mood's mediantest: Mood's Median Test compares the medians of
-% two or more groups. The test counts how many observations in each group
-% are greater than the global median for all groups together and
-% calculuates Chi-square statistics on those obervations.
-% Less powerful than Kruskal-Wallis test, but require fewer assumptions.
-%
+% performes Mood's mediantest: Mood's Median Test compares the medians of two or more groups 
 % Inputs can be entered in several ways:
 %     - individual data groups [e.g. mediantest(dataset1,dataset2,dataset3)] in which each dataset is a vector of continous responses, or data vector and group
-%     - 2-column matrix containing responses (data) and groups identifier
-%     - table containing columns 'data' and 'group'
-
-
+%     - 2-column matrix containing 
+% vector or matrix with columns 'data' and 'group' or table with columns
+% data/group
 inputClass = class(varargin{1});
 
 inputData = varargin;
