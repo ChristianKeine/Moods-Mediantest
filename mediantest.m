@@ -30,16 +30,14 @@ function [p,tab,chi2,labels] = mediantest(varargin)
 %     - table containing columns 'data' and 'group'
 
 
-inputClass = class(varargin{1});
 
 inputData = varargin;
 
-switch inputClass
-    case 'table'
+if istable(inputData{1})
         t = inputData{1};
         data = t.data;
         groups = t.groups;
-    case 'double'  
+elseif isnumeric(inputData{1})
         if numel(inputData)<2 % NOT ENOUGH GROUPS
         warning('Please specify at least two groups.'), return
         elseif numel(inputData)>2 % assume data entered as several input arguments
@@ -53,7 +51,9 @@ switch inputClass
             else
                 [data, groups] = sortData(inputData);
             end
-        end     
+        end    
+else
+        warning('Data type not supported. Must be numeric or table.'), return
 end
 
 [tab,chi2,p,labels] = crosstab(data>median(data),groups);
