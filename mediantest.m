@@ -6,6 +6,24 @@ function [p,tab,chi2,labels] = mediantest(varargin)
 % calculuates Chi-square statistics on those obervations.
 % Less powerful than Kruskal-Wallis test, but require fewer assumptions.
 %
+%
+% Information from [1]:
+% 
+% Appropriate data for use with Mood's median test:
+% 	- One-way data with two or more groups
+%   - Dependent variable is ordinal, interval, or ratio
+%   - Independent variable is a factor with levels indicating groups
+%   - Observations between groups are independent.  That is, not paired or repeated measures data
+% 
+% Hypotheses
+%   - Null hypothesis:  The medians of values for each group are equal.
+%   - Alternative hypothesis (two-sided): The medians of values for each group are not equal.
+% 
+% Interpretation
+% - Significant results can be reported as “There was a significant difference in the median values among groups.”
+% 
+% [1] Mangiafico, S.S. 2016. Summary and Analysis of Extension Program Evaluation in R, version 1.15.0. rcompanion.org/handbook/. (Pdf version: rcompanion.org/documents/RHandbookProgramEvaluation.pdf.)
+%
 % Inputs can be entered in several ways:
 %     - individual data groups [e.g. mediantest(dataset1,dataset2,dataset3)] in which each dataset is a vector of continous responses, or data vector and group
 %     - 2-column matrix containing responses (data) and groups identifier
